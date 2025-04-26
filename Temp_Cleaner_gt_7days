@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Define the directory you want to clean
+TARGET_DIR="/tmp"
+
+# Define how old files should be to delete
+DAYS_OLD=7
+
+# Find and delete files older than DAYS_OLD
+sudo find "$TARGET_DIR" -type f  -delete
+
+# Optional: print what you did
+echo "Cleaned up files older than $DAYS_OLD days from $TARGET_DIR."
+
+echo "Cleared path $TARGET_DIR older than $DAYS_OLD" | mail -s "$TARGET_DIR cleared(More Than $DYAS_OLD)" bakshanvysiar007@gmail.com

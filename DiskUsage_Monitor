@@ -1,0 +1,7 @@
+#!/bin/bash
+	disk_size=`df -h | awk -F " " 'NR==5{print $(NF-1)}'|sed s/%//ig`
+	if [ $disk_size -gt 50 ];then
+			echo "disk size is $disk_size ,which is almost full,do check"
+	else
+			echo "disk size is $disk_size ,so you have enough space"
+	fi

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Variables
+SOURCE_DIR="/home/ec2-user/source"
+DEST_USER="ec2-user"
+DEST_SERVER="172.31.29.73"
+DEST_DIR="/home/ec2-user/backup_source"
+
+# Rsync command
+rsync -avz  "$SOURCE_DIR" "${DEST_USER}@${DEST_SERVER}:${DEST_DIR}"
+
+# Message
+echo "Backup completed successfully."

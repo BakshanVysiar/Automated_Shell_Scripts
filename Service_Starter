@@ -1,0 +1,10 @@
+#!/bin/bash
+	service="sshd crond docker"
+	for i in $service
+	do
+			output=`sudo systemctl is-active $i`
+			if [ $output != "active" ];then
+					echo "$i is not active ,we are starting"
+					sudo systemctl start $i
+			fi
+	done

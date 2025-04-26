@@ -1,0 +1,21 @@
+[ec2-user@ip-172-31-88-109 ~]$ vi server_status.sh
+#!/bin/bash
+
+# File containing list of servers (one per line)
+SERVER_LIST="servers.txt"
+
+while read server
+do
+# Ping the server (only send 1 packet, wait max 2 seconds)
+         if ping -c 1 -W 2 "$server" &> /dev/null
+             then
+                echo "$server is UP"
+         else
+                echo "$server is DOWN"
+                echo "$server is down" >> down.txt
+         fi
+done < "$SERVER_LIST"
+
+cat down.txt | mail -s "Alert Server Down" -a down.txt bakshanvysiar007@gmail.com
+
+rm -rf down.txt
